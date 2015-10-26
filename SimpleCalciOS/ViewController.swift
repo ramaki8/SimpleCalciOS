@@ -83,11 +83,17 @@ class ViewController: UIViewController {
     }
     
     func doAvg() -> Int {
-        return 0
+        var total = 0
+        for var i = 0; i < inputArr.count; i++ {
+            if (i % 2 == 0) {
+                total += convert(inputArr[i])
+            }
+        }
+        return total / doCount()
     }
     
     func doCount() -> Int {
-        return 0
+        return inputArr.count / 2 + 1
     }
     
     func doFact() -> Int {
@@ -100,6 +106,15 @@ class ViewController: UIViewController {
     
     func convert(incoming:String) -> Int {
         return NSNumberFormatter().numberFromString(incoming)!.integerValue
+    }
+    
+    func isOperand(s: String) -> Bool {
+        switch s {
+            case "+", "-", "×","÷", "%", "fact", "count", "avg":
+                return true
+        default: break
+        }
+        return false
     }
     
     override func viewDidLoad() {
